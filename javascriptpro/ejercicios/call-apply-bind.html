@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la Consola</em></p>
+<ul>
+    <li><button class="call-to-action">Aprender</button></li>
+    <li><button class="call-to-action">Aprender Más</button></li>
+    <li><button class="call-to-action">¡Nunca pares de Aprender!</button></li>
+</ul>
+<script>
+    // Establece this usando call
+    function saludar(){
+        console.log(`Hola. Soy ${this.name} ${this.apellido}`);
+    }
+    const richard = {
+        name : "richard",
+        apellido : "Kaufmman",
+    }
+    saludar.call(richard);
+
+
+    // Establece `this` usando call y pasar argumentos a la funcion
+    // c de call = Coma
+    function caminar (metros, direccion){
+        console.log(`${this.name} camina ${metros} Mts hacia la direccion : ${direccion}`);
+    }
+    caminar.call(richard, 400, 'norte')
+
+    // Establece this usando apply y psar argumentos a la funcion
+    //a de applay = Arreglo
+    caminar.apply(richard,[800,"sur"]);
+    const valores = [800,"sur"];
+    caminar.apply(richard,valores);
+    // Establecer this en una nueva funcion usado bind
+    const daniel = { name:"daniel",apellido:"rico"};
+    const danielSaluda = saludar.bind(daniel);
+    danielSaluda();
+
+    const danielCamina=caminar.bind(daniel);
+    danielCamina(100,"Este");
+
+    // cuando es util usar uno de estos metodos
+
+    //no funciona por que buttons no es un arreglo es un NodeList
+    const buttons = document.getElementsByClassName("call-to-action");
+    /*buttons.array.forEach(button => {
+        button.onclick =() => alert("Nunca pares de aprender");        
+    });
+    */
+    Array.prototype.forEach.call(buttons, button => {
+        button.onclick = () => alert("Nunca pares de aprender");
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>

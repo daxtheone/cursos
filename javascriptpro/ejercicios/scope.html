@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la consola</em></p>
+    <script>
+        //Global Scope
+        var message =  'Hello, Platzi !';
+        //Function Scope
+        
+        /*
+        *imprime el numero 10, 10 veces ya que cuando comienza a ejecutar las funciones
+        * el valor de i es 10 para todos los casos
+        */
+        function printNumbers(){
+            for(var i = 0; i < 10; i++){
+                setTimeout(function(){
+                    console.log(i);
+                },100);
+            }
+        }
+        printNumbers();
+
+        /*
+        *imprime el numero 1,2,3..., 10 ya que cuando ejecuta las funciones
+        * el valor de n es scope de la funcion y tienee el valor del moento de i
+        */
+        function printNumbers2(){
+            for(var i = 0; i < 10 ; i++){
+                function eventuallyPrintNumber(n){
+                    setTimeout(function(){console.log(n)},100);
+                }
+                eventuallyPrintNumber(i);
+            }
+        }
+        printNumbers2();
+   
+   
+        //Block Scope
+        /*
+        *imprime el numero 10, 10 veces ya que cuando comienza a ejecutar las funciones
+        * el valor de i es 10 para todos los casos
+        */
+        function printNumbers3(){
+            for(let i = 0; i < 10; i++){
+                setTimeout(function(){
+                    console.log(i);
+                },100);
+            }
+        }
+        printNumbers3();
+
+        //Modulo Scope
+
+
+
+    </script>
+</body>
+</html>

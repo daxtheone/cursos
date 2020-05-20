@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go Back</a>
+    <p><em>Abre la Consola</em></p>
+
+    <script>
+    /*
+    *  
+        IIFE FUNCION QUE SE LLAMA A SI MISMA
+        (function(){
+
+        })();
+    *
+   
+
+    (function(){
+        let color = 'green';
+        function printColor(){
+            console.log(color);
+        } 
+        printColor();
+    })();
+
+    */  
+
+
+    /*
+
+    // Funciones que regresan funcion
+
+    function makeColorPrinter(color){
+        let colorMessage = `The color is ${color}`;  // se recuerda de este valor, por closures
+        return function(){
+            console.log(colorMessage)
+        }
+    }
+
+    let greenColorPrinter = makeColorPrinter("Green");
+    console.log(greenColorPrinter());
+    */
+
+
+    //vamos a ejemplificar como hacer una varible privada
+    /*
+    const counter = {
+        count : 3,
+    }
+    console.log(counter.count);
+    */
+  
+    function makeCounter(n){
+        let count = n;
+        return {
+            increase : function(){
+               count = count + 1;
+            },
+            decrease : function(){
+                count = count - 1;
+            },
+            getCount : function(){
+                return count;
+            },
+        }
+    } 
+    let counter = makeCounter(7);
+    console.log('The count is : '+counter.getCount());
+    counter.increase();
+    counter.increase();
+    counter.increase();
+    console.log('The count is : '+counter.getCount());
+    counter.decrease();
+    console.log('The count is : '+counter.getCount());
+
+
+
+    </script>
+</body>
+</html>
